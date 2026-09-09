@@ -1,0 +1,116 @@
+{
+  "version": "2026-08-31",
+  "scale": "0-10",
+  "providers": [
+    {
+      "id": "matplotlib-seaborn",
+      "layer": "renderer",
+      "display_name": "Matplotlib + Seaborn + constrained layout",
+      "availability": "probe",
+      "requirements": {"commands": [], "python_modules": ["matplotlib", "seaborn"]},
+      "capabilities": {"exact_numeric": true, "exact_text": true, "vector": true, "reproducible": true, "formal_final": true, "ai_generated": false},
+      "scores": {"visual_aesthetics": 8.5, "semantic_numeric_accuracy": 10.0, "text_accuracy": 9.2, "collision_avoidance": 8.8, "vector_export": 10.0, "reproducibility": 10.0, "speed": 8.0, "cumcm_auditability": 10.0},
+      "scenario_fit": {"data_chart": 10.0, "flowchart": 3.5, "network": 5.0, "map": 8.0, "conceptual_schematic": 4.5, "composite": 8.5},
+      "evidence_confidence": "high",
+      "notes": "Default deterministic data-chart renderer; add adjustText for dense direct labels."
+    },
+    {
+      "id": "d2-elk",
+      "layer": "renderer",
+      "display_name": "D2 + ELK",
+      "availability": "probe",
+      "requirements": {"commands": ["d2", "msedge"], "python_modules": []},
+      "capabilities": {"exact_numeric": false, "exact_text": true, "vector": true, "reproducible": true, "formal_final": true, "ai_generated": false},
+      "scores": {"visual_aesthetics": 9.0, "semantic_numeric_accuracy": 8.0, "text_accuracy": 9.8, "collision_avoidance": 9.5, "vector_export": 10.0, "reproducibility": 9.8, "speed": 8.8, "cumcm_auditability": 9.5},
+      "scenario_fit": {"data_chart": 2.0, "flowchart": 10.0, "network": 8.5, "map": 1.0, "conceptual_schematic": 8.5, "composite": 6.5},
+      "evidence_confidence": "high",
+      "notes": "Preferred exact-text formal flowchart renderer."
+    },
+    {
+      "id": "mermaid-elk",
+      "layer": "renderer",
+      "display_name": "Mermaid CLI + ELK",
+      "availability": "probe",
+      "requirements": {"commands": ["mmdc"], "python_modules": []},
+      "capabilities": {"exact_numeric": false, "exact_text": true, "vector": true, "reproducible": true, "formal_final": true, "ai_generated": false},
+      "scores": {"visual_aesthetics": 8.0, "semantic_numeric_accuracy": 7.5, "text_accuracy": 9.5, "collision_avoidance": 9.0, "vector_export": 9.5, "reproducibility": 9.5, "speed": 9.5, "cumcm_auditability": 9.0},
+      "scenario_fit": {"data_chart": 2.0, "flowchart": 9.3, "network": 7.5, "map": 1.0, "conceptual_schematic": 7.5, "composite": 5.5},
+      "evidence_confidence": "high",
+      "notes": "Fast editable draft and strong fallback for formal flowcharts."
+    },
+    {
+      "id": "networkx-graphviz",
+      "layer": "renderer",
+      "display_name": "NetworkX + Graphviz",
+      "availability": "probe",
+      "requirements": {"commands": ["dot"], "python_modules": ["networkx"]},
+      "capabilities": {"exact_numeric": false, "exact_text": true, "vector": true, "reproducible": true, "formal_final": true, "ai_generated": false},
+      "scores": {"visual_aesthetics": 8.0, "semantic_numeric_accuracy": 9.0, "text_accuracy": 9.5, "collision_avoidance": 9.0, "vector_export": 10.0, "reproducibility": 9.8, "speed": 8.0, "cumcm_auditability": 9.5},
+      "scenario_fit": {"data_chart": 3.0, "flowchart": 8.0, "network": 10.0, "map": 2.0, "conceptual_schematic": 7.0, "composite": 5.5},
+      "evidence_confidence": "high",
+      "notes": "Preferred graph-structure renderer."
+    },
+    {
+      "id": "geopandas-cartopy",
+      "layer": "renderer",
+      "display_name": "GeoPandas + Cartopy + Matplotlib",
+      "availability": "probe",
+      "requirements": {"commands": [], "python_modules": ["geopandas", "cartopy", "matplotlib"]},
+      "capabilities": {"exact_numeric": true, "exact_text": true, "vector": true, "reproducible": true, "formal_final": true, "ai_generated": false},
+      "scores": {"visual_aesthetics": 8.2, "semantic_numeric_accuracy": 9.8, "text_accuracy": 9.0, "collision_avoidance": 8.0, "vector_export": 9.5, "reproducibility": 9.5, "speed": 6.5, "cumcm_auditability": 9.8},
+      "scenario_fit": {"data_chart": 6.0, "flowchart": 1.0, "network": 3.0, "map": 10.0, "conceptual_schematic": 3.0, "composite": 7.0},
+      "evidence_confidence": "high",
+      "notes": "Preferred auditable spatial route; record CRS and projection."
+    },
+    {
+      "id": "ggplot2-ggrepel",
+      "layer": "renderer",
+      "display_name": "ggplot2 + ggrepel",
+      "availability": "probe",
+      "requirements": {"commands": ["Rscript"], "python_modules": [], "r_packages": ["ggplot2", "ggrepel"]},
+      "capabilities": {"exact_numeric": true, "exact_text": true, "vector": true, "reproducible": true, "formal_final": true, "ai_generated": false},
+      "scores": {"visual_aesthetics": 9.0, "semantic_numeric_accuracy": 10.0, "text_accuracy": 9.0, "collision_avoidance": 9.2, "vector_export": 10.0, "reproducibility": 10.0, "speed": 7.8, "cumcm_auditability": 10.0},
+      "scenario_fit": {"data_chart": 9.7, "flowchart": 2.0, "network": 3.0, "map": 7.0, "conceptual_schematic": 3.0, "composite": 7.5},
+      "evidence_confidence": "high",
+      "notes": "Strong R-native alternative for exact plots and label repulsion."
+    },
+    {
+      "id": "plotly-kaleido",
+      "layer": "renderer",
+      "display_name": "Plotly.py + Kaleido",
+      "availability": "probe",
+      "requirements": {"commands": [], "python_modules": ["plotly", "kaleido"]},
+      "capabilities": {"exact_numeric": true, "exact_text": true, "vector": true, "reproducible": true, "formal_final": true, "ai_generated": false},
+      "scores": {"visual_aesthetics": 8.4, "semantic_numeric_accuracy": 9.8, "text_accuracy": 8.8, "collision_avoidance": 7.8, "vector_export": 8.8, "reproducibility": 9.0, "speed": 9.0, "cumcm_auditability": 9.0},
+      "scenario_fit": {"data_chart": 8.8, "flowchart": 3.0, "network": 5.0, "map": 8.0, "conceptual_schematic": 3.0, "composite": 7.5},
+      "evidence_confidence": "medium",
+      "notes": "Useful fast fallback; freeze static export and inspect labels at paper width."
+    },
+    {
+      "id": "engineering-figure-agent",
+      "layer": "skill",
+      "display_name": "Installed engineering-figure-agent",
+      "availability": "installed_skill",
+      "requirements": {"commands": [], "python_modules": []},
+      "capabilities": {"exact_numeric": true, "exact_text": false, "vector": true, "reproducible": true, "formal_final": false, "ai_generated": true},
+      "scores": {"visual_aesthetics": 9.0, "semantic_numeric_accuracy": 7.0, "text_accuracy": 6.0, "collision_avoidance": 7.0, "vector_export": 7.5, "reproducibility": 7.5, "speed": 9.0, "cumcm_auditability": 7.5},
+      "scenario_fit": {"data_chart": 7.5, "flowchart": 7.5, "network": 5.5, "map": 4.0, "conceptual_schematic": 9.2, "composite": 8.0},
+      "evidence_confidence": "medium",
+      "candidate_only": true,
+      "notes": "Reuse plot mode for exact charts; image mode remains candidate-only."
+    },
+    {
+      "id": "openai-imagegen",
+      "layer": "skill",
+      "display_name": "OpenAI imagegen",
+      "availability": "session_skill",
+      "requirements": {"commands": [], "python_modules": []},
+      "capabilities": {"exact_numeric": false, "exact_text": false, "vector": false, "reproducible": false, "formal_final": false, "ai_generated": true},
+      "scores": {"visual_aesthetics": 9.5, "semantic_numeric_accuracy": 4.0, "text_accuracy": 4.0, "collision_avoidance": 6.5, "vector_export": 1.0, "reproducibility": 3.5, "speed": 8.5, "cumcm_auditability": 5.0},
+      "scenario_fit": {"data_chart": 0.0, "flowchart": 4.0, "network": 2.0, "map": 2.0, "conceptual_schematic": 9.5, "composite": 4.0},
+      "evidence_confidence": "medium",
+      "candidate_only": true,
+      "notes": "Visual exploration only; reconstruct exact labels and structure before formal use."
+    }
+  ]
+}

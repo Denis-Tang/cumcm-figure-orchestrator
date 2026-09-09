@@ -1,0 +1,4 @@
+interface:
+  display_name: "CUMCM 论文绘图总控"
+  short_description: "面向 CUMCM 的论文图表评分、智能路由与可审计质量检查"
+  default_prompt: "Use $cumcm-figure-orchestrator to read this complete CUMCM paper and data, render the justified formal figures, verify their numerical and visual evidence, and deliver the images, sources and validated manifest with any blocked claims clearly identified."

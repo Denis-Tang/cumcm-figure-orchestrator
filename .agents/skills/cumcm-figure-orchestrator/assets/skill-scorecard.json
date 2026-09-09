@@ -1,0 +1,83 @@
+{
+  "version": "2026-08-31",
+  "scale": "0-10",
+  "providers": [
+    {
+      "id": "data-analytics:visualize-data",
+      "layer": "skill",
+      "display_name": "Data Analytics: Visualize Data",
+      "availability": "session_skill",
+      "requirements": {"commands": [], "python_modules": []},
+      "capabilities": {"exact_numeric": true, "exact_text": true, "vector": false, "reproducible": true, "formal_final": false, "ai_generated": true},
+      "scores": {"visual_aesthetics": 9.0, "semantic_numeric_accuracy": 9.5, "text_accuracy": 9.0, "collision_avoidance": 9.0, "vector_export": 5.0, "reproducibility": 9.5, "speed": 8.5, "cumcm_auditability": 9.5},
+      "scenario_fit": {"data_chart": 9.8, "flowchart": 4.0, "network": 8.0, "map": 8.5, "conceptual_schematic": 4.0, "composite": 9.0},
+      "evidence_confidence": "high",
+      "candidate_only": true,
+      "notes": "Best installed/session Skill for chart choice and QA; pair with deterministic renderer for final assets."
+    },
+    {
+      "id": "engineering-figure-agent",
+      "layer": "skill",
+      "display_name": "Installed engineering-figure-agent",
+      "availability": "installed_skill",
+      "requirements": {"commands": [], "python_modules": []},
+      "capabilities": {"exact_numeric": true, "exact_text": false, "vector": true, "reproducible": true, "formal_final": false, "ai_generated": true},
+      "scores": {"visual_aesthetics": 9.0, "semantic_numeric_accuracy": 7.0, "text_accuracy": 6.0, "collision_avoidance": 7.0, "vector_export": 7.5, "reproducibility": 7.5, "speed": 9.0, "cumcm_auditability": 7.5},
+      "scenario_fit": {"data_chart": 7.5, "flowchart": 7.5, "network": 5.5, "map": 4.0, "conceptual_schematic": 9.2, "composite": 8.0},
+      "evidence_confidence": "medium",
+      "candidate_only": true,
+      "notes": "Strongest installed Skill for conceptual visual candidates; its deterministic plot mode is safer than image mode."
+    },
+    {
+      "id": "imagegen",
+      "layer": "skill",
+      "display_name": "OpenAI imagegen",
+      "availability": "session_skill",
+      "requirements": {"commands": [], "python_modules": []},
+      "capabilities": {"exact_numeric": false, "exact_text": false, "vector": false, "reproducible": false, "formal_final": false, "ai_generated": true},
+      "scores": {"visual_aesthetics": 9.5, "semantic_numeric_accuracy": 4.0, "text_accuracy": 4.0, "collision_avoidance": 6.5, "vector_export": 1.0, "reproducibility": 3.5, "speed": 8.5, "cumcm_auditability": 5.0},
+      "scenario_fit": {"data_chart": 0.0, "flowchart": 4.0, "network": 2.0, "map": 2.0, "conceptual_schematic": 9.5, "composite": 4.0},
+      "evidence_confidence": "medium",
+      "candidate_only": true,
+      "notes": "Highest free-form visual exploration score, but not eligible for formal exact figures."
+    },
+    {
+      "id": "visualize:visualize",
+      "layer": "skill",
+      "display_name": "Visualize interactive",
+      "availability": "session_skill",
+      "requirements": {"commands": [], "python_modules": []},
+      "capabilities": {"exact_numeric": true, "exact_text": true, "vector": false, "reproducible": true, "formal_final": false, "ai_generated": true},
+      "scores": {"visual_aesthetics": 8.8, "semantic_numeric_accuracy": 9.0, "text_accuracy": 8.5, "collision_avoidance": 8.5, "vector_export": 4.0, "reproducibility": 8.0, "speed": 9.0, "cumcm_auditability": 7.5},
+      "scenario_fit": {"data_chart": 8.8, "flowchart": 6.0, "network": 8.0, "map": 8.0, "conceptual_schematic": 6.0, "composite": 8.5},
+      "evidence_confidence": "medium",
+      "candidate_only": true,
+      "notes": "Useful for interactive exploration and explanation; static scientific figures should use deterministic renderers."
+    },
+    {
+      "id": "kdense-scientific-visualization",
+      "layer": "external_skill",
+      "display_name": "K-Dense scientific-visualization",
+      "availability": "not_installed",
+      "requirements": {"commands": [], "python_modules": []},
+      "capabilities": {"exact_numeric": true, "exact_text": true, "vector": true, "reproducible": true, "formal_final": true, "ai_generated": true},
+      "scores": {"visual_aesthetics": 9.0, "semantic_numeric_accuracy": 9.5, "text_accuracy": 9.0, "collision_avoidance": 8.5, "vector_export": 9.5, "reproducibility": 9.5, "speed": 8.0, "cumcm_auditability": 9.0},
+      "scenario_fit": {"data_chart": 9.5, "flowchart": 5.0, "network": 7.0, "map": 8.0, "conceptual_schematic": 5.0, "composite": 8.5},
+      "evidence_confidence": "medium",
+      "notes": "Strong publication-figure rules and export QA; not installed in this workspace."
+    },
+    {
+      "id": "paperbanana",
+      "layer": "external_skill",
+      "display_name": "PaperBanana",
+      "availability": "not_installed",
+      "requirements": {"commands": [], "python_modules": []},
+      "capabilities": {"exact_numeric": false, "exact_text": false, "vector": false, "reproducible": false, "formal_final": false, "ai_generated": true},
+      "scores": {"visual_aesthetics": 9.2, "semantic_numeric_accuracy": 5.0, "text_accuracy": 4.5, "collision_avoidance": 6.5, "vector_export": 2.0, "reproducibility": 4.0, "speed": 8.5, "cumcm_auditability": 5.0},
+      "scenario_fit": {"data_chart": 2.0, "flowchart": 5.5, "network": 3.0, "map": 2.0, "conceptual_schematic": 9.2, "composite": 5.0},
+      "evidence_confidence": "medium",
+      "candidate_only": true,
+      "notes": "Promising conceptual diagram candidate; statistical plot generation and reliability remain unsuitable as formal defaults."
+    }
+  ]
+}

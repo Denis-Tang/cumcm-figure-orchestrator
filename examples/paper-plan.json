@@ -1,0 +1,102 @@
+{
+  "batch_id": "cumcm-demo-one-paper",
+  "competition_profile": "cumcm",
+  "paper": {
+    "title": "示例：城市配送路径与资源配置",
+    "source_path": "paper/demo-paper.docx",
+    "year": 2026,
+    "problem": "A"
+  },
+  "figures": [
+    {
+      "figure_id": "fig_01_solution_overview",
+      "status": "formal",
+      "task_type": "flowchart",
+      "claim": "论文从数据预处理、需求预测到路径优化形成可复现的完整求解链路。",
+      "caption": "整体建模与求解流程。",
+      "paper_anchor": "2.2 问题分析",
+      "sources": [
+        "paper/demo-paper.docx",
+        "src/model.py"
+      ],
+      "data_source": null,
+      "code_path": null,
+      "chart_family": null,
+      "final_width_mm": 150,
+      "constraints": {
+        "exact_numeric": false,
+        "exact_text": true,
+        "vector_required": true,
+        "reproducible_required": true,
+        "contains_text": true
+      },
+      "pipeline_state": "planned",
+      "semantic_contract": {
+        "source_mapping": "paper/demo-paper.docx section 2.2 and src/model.py; confirm before rendering",
+        "invariants": [
+          "Preprocessing precedes prediction; prediction feeds optimization; confirm every directed edge against source"
+        ]
+      }
+    },
+    {
+      "figure_id": "fig_02_model_error",
+      "status": "formal",
+      "task_type": "data_chart",
+      "claim": "候选模型的验证集误差存在可复核差异。",
+      "caption": "不同预测模型的验证集 RMSE。",
+      "paper_anchor": "4.3 模型比较",
+      "sources": [
+        "data/model_metrics.csv",
+        "src/evaluate.py"
+      ],
+      "data_source": "data/model_metrics.csv",
+      "code_path": "src/evaluate.py",
+      "chart_family": "point_interval",
+      "final_width_mm": 120,
+      "constraints": {
+        "exact_numeric": true,
+        "exact_text": true,
+        "vector_required": true,
+        "reproducible_required": true,
+        "contains_text": true
+      },
+      "pipeline_state": "planned"
+    },
+    {
+      "figure_id": "alt_01_delivery_scene",
+      "status": "alternative",
+      "task_type": "conceptual_schematic",
+      "claim": "用非数值场景图帮助读者理解仓库、需求点与车辆之间的角色关系。",
+      "caption": "城市配送场景概念示意（候选，不进入正式图集）。",
+      "paper_anchor": "1.1 问题背景",
+      "sources": [
+        "paper/demo-paper.docx"
+      ],
+      "data_source": null,
+      "code_path": null,
+      "chart_family": null,
+      "final_width_mm": 120,
+      "allow_ai_candidate": true,
+      "constraints": {
+        "exact_numeric": false,
+        "exact_text": false,
+        "vector_required": false,
+        "reproducible_required": false,
+        "contains_text": false
+      },
+      "pipeline_state": "planned"
+    }
+  ],
+  "schema_version": 2,
+  "delivery_status": "planned",
+  "target_figure_ids": [
+    "fig_01_solution_overview",
+    "fig_02_model_error"
+  ],
+  "layout": {
+    "page_width_mm": 210,
+    "margin_left_mm": 25,
+    "margin_right_mm": 25,
+    "min_dpi": 300
+  }
+}
