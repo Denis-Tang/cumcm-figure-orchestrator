@@ -1,6 +1,6 @@
-# 个人配色基线与版本管理
+# 个人配色基线与选色顺序
 
-V02 是 Developer 唯一的活动视觉基准，不支持多版本并行或版本切换。当前生效版本以 ../assets/personal-color-baseline.json 的 `baseline_id` 为准；读取实际色值和强度，不在绘图代码中硬编码版本。默认直接使用，无须再次确认。颜色数值与选择策略分层：策略见 personal-figure-style.md 和 ../assets/personal-figure-style.json。
+V02 是 Developer 唯一的活动视觉基准，不支持多版本并行或版本切换。当前生效版本以 ../assets/personal-color-baseline.json 的 `baseline_id` 为准；读取实际色值和强度，不在绘图代码中硬编码版本。默认直接使用，无须再次确认。色值与选择策略分层：本文件管色值和用途，选择策略见 personal-figure-style.md 和 ../assets/personal-figure-style.json。
 
 | 版本 | 色系 | 柱条、环形等大面积分类填充 | 流程节点、箱线填充 |
 |---|---|---|---|
@@ -8,7 +8,33 @@ V02 是 Developer 唯一的活动视觉基准，不支持多版本并行或版�
 
 版本快照：../assets/personal-color-baseline-v02.json，样张为同目录 personal-color-baseline-v02.png。V02 原始规则见 personal-color-baseline-v02.md。样张全部是假设数据，仅确立配色，不限制正式论文图型、数量和布局。
 
-角色键 blue、coral、amber、violet、teal、slate 是逻辑名称，实际色值一律以当前 palette JSON 为准，不得按字面颜色名称自行推断。
+## 固定色值与默认用途
+
+| 角色键 | 颜色 | 默认用途 |
+|---|---|---|
+| `blue` | 明蓝 | 主方案、主体、计划值、首要分类 |
+| `coral` | 珊瑚红 | 对照、异常、紧急、负向强调、第二分类 |
+| `amber` | 暖橙 | 第三分类、辅助强调 |
+| `violet` | 雾紫 | 第四分类、独立状态角色 |
+| `teal` | 青绿 | 第五分类，或确有绿色语义时使用 |
+| `slate` | 蓝灰 | 基准、reference、边界、次要上下文 |
+
+角色键 `blue`、`coral`、`amber`、`violet`、`teal`、`slate` 是逻辑名称，实际色值一律以当前 palette JSON 为准，不得按字面颜色名称自行推断。`coral` 是内部 schema key，对读者可以称「红色」或「珊瑚红」，不因此修改 HEX 或 key。
+
+## 选色顺序
+
+按完成科学表达所需的**最少**色数取用，顺序固定，先红蓝、再橙、再紫、最后绿：
+
+1. **单一主系列**：优先 `blue`。
+2. **两个主要系列**：`blue` + `coral`（红蓝优先）。
+3. **第三个独立分类**：增加 `amber`（橙）。
+4. **第四个独立分类**：增加 `violet`（紫）。
+5. **第五个分类，或确有绿色语义时**：最后才用 `teal`（绿）。
+6. **`slate` 不参与上述排序**，始终保留为中性参考角色。
+
+顺序不是机械规则，**论文的严谨性优先于配色顺序**：若科学语义有要求（例如绿色已约定表示植被、达标或安全状态），可以提前使用，但必须在 `style_policy.overrides` 记录 reason。「主方案／正常状态」与「异常／风险／紧急状态」这类对象必须在全篇保持一致的映射，不得在不同图之间换色。颜色本身不自行代表好坏、安全或风险。类别超过五类时优先增加点形、线型、标签或分面，而不是循环色序或删除必要系列。
+
+`scripts/figure_style.py` 的 `select_colors()` 按此顺序自动分配角色，色序用尽会直接报错，不静默循环。
 
 ## 图型应用
 

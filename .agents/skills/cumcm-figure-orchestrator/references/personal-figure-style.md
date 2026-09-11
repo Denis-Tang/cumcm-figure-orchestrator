@@ -6,7 +6,7 @@
 
 科学准确性 > 可读性 > 可复现性 > 个人美学。不能改数据、单位、时间索引、统计口径、轴变换、必要标签或结论来满足视觉规则。
 
-分类色默认顺序 blue、coral、amber、violet、teal；一个强调对象可选 blue 或 coral。slate 用于参考/中性/边界，不自动补成第六分类。超过五类先评估 marker、hatch、线型或分面；不要循环色序造成歧义，也不要删除必要系列。颜色不自行代表好坏、安全或风险。已有跨图对象映射优先；科学语义和用户当次覆盖可提前用绿色等，但须记录 reason。连续 colormap 仍独立按科学语义选择。
+分类色默认顺序 blue、coral、amber、violet、teal（先红蓝、再橙、再紫、最后绿），各角色的默认用途与「按类别数取色」的完整阶梯见 `personal-color-baseline.md`；一个强调对象可选 blue 或 coral。slate 用于参考/中性/边界，不自动补成第六分类。超过五类先评估 marker、hatch、线型或分面；不要循环色序造成歧义，也不要删除必要系列。颜色不自行代表好坏、安全或风险。已有跨图对象映射优先；科学语义和用户当次覆盖可提前用绿色等，但须记录 reason。连续 colormap 仍独立按科学语义选择。
 
 ```python
 from figure_style import load_style, select_colors, matplotlib_style, declare_continuity
