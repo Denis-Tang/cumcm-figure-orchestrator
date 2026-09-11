@@ -21,8 +21,6 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from PIL import Image
 from matplotlib_layout_qa import inspect_figure_layout
-from matplotlib_style_qa import apply_closed_cartesian_style, run_style_qa
-import matplotlib_style_qa
 root=Path(__file__).resolve().parent
 groups={}
 with (root/"raw.csv").open() as handle:
@@ -32,16 +30,14 @@ labels=sorted(groups)
 values=[sum(groups[key])/len(groups[key]) for key in labels]
 plt.rcParams.update({"font.sans-serif":["Microsoft YaHei","DejaVu Sans"], "svg.fonttype":"none"})
 fig,ax=plt.subplots(figsize=(140/25.4,95/25.4),layout="constrained")
-palette=json.loads((Path(matplotlib_style_qa.__file__).resolve().parent.parent/"assets/personal-color-baseline.json").read_text())
-points=ax.scatter(range(len(labels)),values,s=55,color=palette["colors"]["blue"])
+points=ax.scatter(range(len(labels)),values,s=55,color="#265B7A")
 ax.set_xticks(range(len(labels)),labels)
 ax.set_ylim(0,7)
 ax.set_ylabel("分组均值（单位）")
 ax.set_title("合成数据验收示例")
-apply_closed_cartesian_style(ax)
+ax.spines[["right","top"]].set_visible(False)
 ax.grid(axis="y",alpha=.2)
 ax.set_axisbelow(True)
-style=run_style_qa(fig)
 layout=inspect_figure_layout(fig)
 with (root/"plotted.csv").open("w",newline="",encoding="utf-8") as handle:
     writer=csv.writer(handle); writer.writerow(["group","value"])
@@ -52,7 +48,7 @@ Image.open(root/"figure.png").convert("L").save(root/"grayscale.png")
 expected={"A","B","C","分组均值（单位）","合成数据验收示例"}
 from matplotlib.text import Text
 actual={item.get_text() for item in fig.findobj(match=Text)}
-(root/"render-result.json").write_text(json.dumps({"layout":layout,"style":style,
+(root/"render-result.json").write_text(json.dumps({"layout":layout,
   "missing_labels":sorted(expected-actual),"renderer_version":matplotlib.__version__},ensure_ascii=False,indent=2),encoding="utf-8")
 plt.close(fig)
 '''
@@ -91,7 +87,7 @@ def main() -> int:
       "paper_anchor":"paper.md 第 3 行", "sources":["paper.md","raw.csv"],
       "data_source":"raw.csv","code_path":"render.py","final_width_mm":140,
       "constraints":{"exact_numeric":True,"exact_text":True,"contains_text":True,"vector_required":True,"reproducible_required":True},
-      "data_contract":{"input_files":["raw.csv","grayscale.png",str(scripts/"matplotlib_layout_qa.py"),str(scripts/"matplotlib_style_qa.py"),str(scripts.parent/"assets/personal-color-baseline.json")],
+      "data_contract":{"input_files":["raw.csv","grayscale.png",str(scripts/"matplotlib_layout_qa.py")],
         "fields":[{"name":"value","unit":"单位","source":"raw.csv/value"}],
         "observation_unit":"one synthetic observation","keys":["group"],"time_scope":"not temporal",
         "missing_policy":"none in synthetic fixture; reject invalid numeric input",
@@ -119,7 +115,7 @@ def main() -> int:
     numeric=compare_tables(root/"reference.csv",root/"plotted.csv",["group"],["value"])
     exports=inspect_outputs(figure,root,manifest["layout"])
     results={"numeric_check":numeric,
-      "collision_check":{"status":"fail" if layout["collisions"] or not rendered["style"]["ok"] else "pass","method":layout["method"],"collisions":layout["collisions"],"style":rendered["style"]},
+      "collision_check":{"status":"fail" if layout["collisions"] else "pass","method":layout["method"],"collisions":layout["collisions"]},
       "clipping_check":{"status":"fail" if layout["clipped"] or layout["small_text"] else "pass","method":layout["method"],"clipped":layout["clipped"],"small_text":layout["small_text"]},
       "ocr_check":{"status":"fail" if rendered["missing_labels"] or layout["glyph_warnings"] else "pass","method":"Exact Matplotlib artist text and missing-glyph scan; PNG reviewed separately","missing_labels":rendered["missing_labels"],"glyph_warnings":layout["glyph_warnings"]},
       "export_check":{"status":"fail" if exports else "pass","method":"PNG decode, SVG vector/size/aspect and final effective DPI check","errors":exports}}

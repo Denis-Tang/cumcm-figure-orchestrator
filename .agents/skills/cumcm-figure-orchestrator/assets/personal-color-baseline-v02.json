@@ -22,16 +22,13 @@
   },
   "text": "#263746",
   "user_confirmed": [
-    "V02 is the sole active personal palette",
-    "simple categorical charts prioritize blue and coral, then amber, violet, and teal last",
-    "slate is reserved for neutral reference, boundary, and baseline roles",
-    "peer panels use balanced regular layouts and avoid abnormal aspect ratios",
-    "Cartesian plots use closed four-spine frames with left/bottom ticks by default",
-    "semantic smoothing is allowed only for genuinely continuous variables",
-    "text must maintain comfortable clearance from lines, markers, bars, and spines"
+    "bar gradients not required",
+    "background needs explicit semantics",
+    "unified palette with vivid and soft variants",
+    "V02 exact palette and fill strengths adopted as default baseline"
   ],
   "baseline_id": "personal-cumcm-v02",
-  "approved_on": "2026-09-11",
+  "approved_on": "2026-09-08",
   "canvas": "#FFFFFF",
   "large_area_fills": {
     "blue": "#58a5e3",
@@ -42,60 +39,6 @@
     "slate": "#8c9cab"
   },
   "soft_fill_strength": 0.16,
-  "preview": "personal-color-baseline-v02.png",
-  "override_policy": "Current user color instructions override specified parts; retain remaining V02 defaults and scientific semantics.",
-  "color_roles": {
-    "categorical_priority": [
-      "blue",
-      "coral",
-      "amber",
-      "violet",
-      "teal"
-    ],
-    "neutral": "slate",
-    "primary_default": "blue",
-    "contrast_default": "coral"
-  },
-  "layout_policy": {
-    "peer_panels_balanced": true,
-    "preferred_aspect_ratios": [
-      "1:1",
-      "4:3",
-      "16:9"
-    ],
-    "extreme_aspect_requires_review": true,
-    "importance_via_caption_not_panel_size": true
-  },
-  "cartesian_axis_policy": {
-    "closed_frame": true,
-    "visible_spines": [
-      "left",
-      "bottom",
-      "top",
-      "right"
-    ],
-    "default_tick_sides": [
-      "left",
-      "bottom"
-    ],
-    "top_ticks": false,
-    "right_ticks": false,
-    "exceptions": [
-      "twin axis",
-      "special coordinate need"
-    ]
-  },
-  "curve_policy": {
-    "semantic_smoothing_only": true,
-    "preferred_method": "shape-preserving interpolation (e.g. PCHIP)",
-    "must_preserve_samples": true,
-    "forbid_overshoot": true,
-    "discrete_series_keep_step_or_bar": true
-  },
-  "text_clearance_policy": {
-    "no_touch_solid_data_lines": true,
-    "clearance_required": true,
-    "prefer_offset_before_background": true,
-    "final_size_manual_review_required": true
-  }
+  "override_policy": "Current user color instructions override specified parts; retain remaining defaults.",
+  "preview": "personal-color-baseline-v02.png"
 }
