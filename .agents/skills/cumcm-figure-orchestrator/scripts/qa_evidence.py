@@ -37,6 +37,7 @@ def required_paths(figure: dict, paper: dict) -> set[str]:
         if contract.get(key):
             paths.add(contract[key])
     paths.update(contract.get("input_files", []))
+    paths.update(figure.get("style_policy", {}).get("input_files", []))
     for panel in figure.get("panels", []):
         paths.update(required_paths(panel, paper))
     return paths

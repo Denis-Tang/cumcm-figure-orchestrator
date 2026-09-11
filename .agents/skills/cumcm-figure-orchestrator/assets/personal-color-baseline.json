@@ -1,63 +1,44 @@
 {
   "status": "user_approved_default",
   "colors": {
-    "blue": "#0072B2",
-    "coral": "#D55E00",
-    "amber": "#E69F00",
-    "teal": "#56B4E9",
-    "violet": "#003366",
-    "slate": "#B3B3B3",
-    "warm": "#FDDBC7",
-    "charcoal": "#1A1A1A"
+    "blue": "#2389DA",
+    "coral": "#D95B52",
+    "amber": "#E5A33D",
+    "teal": "#49A88D",
+    "violet": "#8876AF",
+    "slate": "#687D91"
   },
   "large_area_fill": {
-    "strength": 1.0,
-    "method": "original reference colors, opaque bars and donut; no white mixing"
+    "strength": 0.76,
+    "method": "white-composited opacity; bars and donut only"
   },
   "soft_fills": {
-    "blue": "#d6e8f3",
-    "coral": "#f8e5d6",
-    "amber": "#fbf0d6",
-    "teal": "#e4f3fb",
-    "violet": "#d6dee7",
-    "slate": "#f3f3f3",
-    "warm": "#fff9f6",
-    "charcoal": "#dadada"
+    "blue": "#dcecf9",
+    "coral": "#f9e5e3",
+    "amber": "#fbf0e0",
+    "teal": "#e2f1ed",
+    "violet": "#ece9f2",
+    "slate": "#e7eaed"
   },
-  "text": "#1A1A1A",
+  "text": "#263746",
   "user_confirmed": [
-    "V03 reference palette approved as latest default",
-    "bars and donut use original opaque colors without white mixing",
-    "soft flowchart fills and semantic backgrounds retained",
-    "V02 retained for rollback"
+    "bar gradients not required",
+    "background needs explicit semantics",
+    "unified palette with vivid and soft variants",
+    "V02 exact palette and fill strengths adopted as default baseline"
   ],
-  "baseline_id": "personal-cumcm-v03",
+  "baseline_id": "personal-cumcm-v02",
   "approved_on": "2026-09-08",
   "canvas": "#FFFFFF",
   "large_area_fills": {
-    "blue": "#0072B2",
-    "coral": "#D55E00",
-    "amber": "#E69F00",
-    "teal": "#56B4E9",
-    "violet": "#003366",
-    "slate": "#B3B3B3",
-    "warm": "#FDDBC7",
-    "charcoal": "#1A1A1A"
+    "blue": "#58a5e3",
+    "coral": "#e2827c",
+    "amber": "#ebb96c",
+    "teal": "#75bda8",
+    "violet": "#a597c2",
+    "slate": "#8c9cab"
   },
   "soft_fill_strength": 0.16,
-  "preview": "personal-color-baseline-v03.png",
   "override_policy": "Current user color instructions override specified parts; retain remaining defaults.",
-  "rollback_profile": "personal-color-baseline-v02.json",
-  "color_roles": {
-    "categorical_preferred": [
-      "blue",
-      "coral",
-      "amber",
-      "teal",
-      "violet"
-    ],
-    "neutral": "slate",
-    "support_fill": "warm",
-    "text": "charcoal"
-  }
+  "preview": "personal-color-baseline-v02.png"
 }

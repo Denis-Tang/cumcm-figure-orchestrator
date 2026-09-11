@@ -1,0 +1,50 @@
+{
+  "profile_id": "developer-v02-style-v2",
+  "palette_file": "personal-color-baseline.json",
+  "categorical_order": ["blue", "coral", "amber", "violet", "teal"],
+  "single_emphasis": ["blue", "coral"],
+  "neutral_role": "slate",
+  "prefer_redundant_encoding": true,
+  "priority": ["scientific_accuracy", "readability", "reproducibility", "personal_aesthetics"],
+  "axes_frame": {
+    "closed": true,
+    "required_sides": ["left", "right", "top", "bottom"],
+    "default_tick_sides": ["left", "bottom"],
+    "other_tick_sides": "case_by_case",
+    "require_tick_side_justification": true,
+    "skip_projections": ["polar", "3d", "geo", "cartopy", "hammer", "aitoff", "lambert", "mollweide"]
+  },
+  "layout": {
+    "equal_panel_tolerance": 0.02,
+    "default_grid": "equal_width_equal_height",
+    "panel_aspect_whitelist": [[1, 1], [4, 3], [16, 9]],
+    "panel_aspect_tolerance": 0.02,
+    "panel_aspect_allow_reciprocal": true,
+    "panel_aspect_min_data_axes": 2
+  },
+  "curve": {
+    "default_continuity": "continuous",
+    "kinds": ["continuous", "discrete", "step", "piecewise_linear"],
+    "min_dense_samples": 24,
+    "max_turn_deg": 12.0,
+    "max_segment_fraction": 0.06,
+    "overshoot_fraction": 0.01
+  },
+  "qa": {"text_stroke_clearance_pt": 4.0, "legend_data_clearance_pt": 4.0},
+  "matplotlib": {
+    "xtick.major.pad": 6,
+    "ytick.major.pad": 6,
+    "axes.labelpad": 9,
+    "axes.titlepad": 12,
+    "grid.linestyle": ":",
+    "grid.alpha": 0.22,
+    "grid.linewidth": 0.6,
+    "axes.linewidth": 0.8,
+    "axes.spines.left": true,
+    "axes.spines.right": true,
+    "axes.spines.top": true,
+    "axes.spines.bottom": true,
+    "xtick.top": false,
+    "ytick.right": false
+  }
+}

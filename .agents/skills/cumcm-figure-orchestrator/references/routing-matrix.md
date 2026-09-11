@@ -27,6 +27,8 @@
 
 ## Anti-overlap policy
 
+All renderers consume `personal-figure-style.md` / its JSON policy: equal-size peer panels, 4 pt clearance to unrelated solid strokes and low-cardinality categorical mapping. D2/R/SVG/other renderers retain equivalent measured or explicitly manual evidence; Matplotlib QA does not validate their geometry. Scientific layout exceptions require reasons in manifest and QA evidence.
+
 - Matplotlib: enable `layout="constrained"`, render at final physical size, place legends/colorbars within the constraint system, run `matplotlib_layout_qa.py`, and use adjustText for dense direct labels.
 - D2/Mermaid: use ELK, keep node labels short, group phases explicitly, and render SVG at final width. Visually review arrows and containers after export.
 - Any renderer: reject text outside canvas, text-text overlap that harms readability, edge-label collisions, clipped legends/colorbars, and labels below the minimum readable size.

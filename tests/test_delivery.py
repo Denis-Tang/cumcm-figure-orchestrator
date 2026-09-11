@@ -230,6 +230,25 @@ class DeliveryTests(unittest.TestCase):
         self.assertEqual(result["status"],"fail")
         self.assertTrue(result["clipped"])
 
+    def test_style_profile_requires_six_bound_checks(self):
+        self.f['style_policy']={'profile_id':'developer-v02-style-v2','baseline_id':'personal-cumcm-v02',
+                                'input_files':['render.py']}
+        errors=self.errors()
+        for name in ('panel_size_uniformity','text_solid_stroke_clearance','legend_data_region_clearance',
+                     'axes_frame_closed','panel_aspect_whitelist','curve_smoothing'):
+            self.assertTrue(any(name in e and 'missing' in e for e in errors), name)
+
+    def test_style_config_mutation_invalidates_evidence(self):
+        (self.base/'style.json').write_text('{"padding":4}')
+        self.f['style_policy']={'profile_id':'test','baseline_id':'test','input_files':['style.json']}
+        result={'status':'pass','method':'Synthetic binding fixture, not a visual review'}
+        evidence=make_evidence(self.f,self.m['paper'],self.m['layout'],'panel_size_uniformity',result,self.base,'unittest')
+        from qa_evidence import validate_evidence
+        self.assertEqual(validate_evidence(evidence,self.f,self.m['paper'],self.m['layout'],'panel_size_uniformity',self.base),[])
+        (self.base/'style.json').write_text('{"padding":0}')
+        self.assertTrue(any('stale evidence: style.json' in e for e in validate_evidence(
+            evidence,self.f,self.m['paper'],self.m['layout'],'panel_size_uniformity',self.base)))
+
 
 if __name__ == "__main__":
     unittest.main()

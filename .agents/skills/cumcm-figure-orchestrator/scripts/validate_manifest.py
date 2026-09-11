@@ -288,6 +288,11 @@ def validate_manifest(
             _check_pass(qa, "ocr_check", context, errors)
 
         checks = list(COMMON_FORMAL_CHECKS)
+        if figure.get("style_policy"):
+            for name in ("panel_size_uniformity", "text_solid_stroke_clearance", "legend_data_region_clearance",
+                         "axes_frame_closed", "panel_aspect_whitelist", "curve_smoothing"):
+                checks.append(name)
+                _check_pass(qa, name, context, errors)
         if numeric_required:
             checks.append("numeric_check")
         if constraints.get("contains_text", True):

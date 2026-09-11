@@ -379,6 +379,24 @@
             },
             "structure_check": {
               "$ref": "#/$defs/check"
+            },
+            "panel_size_uniformity": {
+              "$ref": "#/$defs/check"
+            },
+            "text_solid_stroke_clearance": {
+              "$ref": "#/$defs/check"
+            },
+            "legend_data_region_clearance": {
+              "$ref": "#/$defs/check"
+            },
+            "axes_frame_closed": {
+              "$ref": "#/$defs/check"
+            },
+            "panel_aspect_whitelist": {
+              "$ref": "#/$defs/check"
+            },
+            "curve_smoothing": {
+              "$ref": "#/$defs/check"
             }
           },
           "additionalProperties": false
@@ -434,6 +452,111 @@
         },
         "data_contract": {
           "$ref": "#/$defs/data_contract"
+        },
+        "style_policy": {
+          "type": "object",
+          "required": [
+            "profile_id",
+            "baseline_id",
+            "input_files"
+          ],
+          "properties": {
+            "profile_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "baseline_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "input_files": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            },
+            "object_mapping": {
+              "type": "object"
+            },
+            "panel_groups": {
+              "type": "object"
+            },
+            "layout_justifications": {
+              "type": "object"
+            },
+            "frame_exemptions": {
+              "type": "object"
+            },
+            "tick_side_justifications": {
+              "type": "object"
+            },
+            "continuity_declarations": {
+              "type": "object",
+              "propertyNames": {
+                "minLength": 1
+              },
+              "additionalProperties": {
+                "oneOf": [
+                  {
+                    "enum": [
+                      "continuous",
+                      "discrete",
+                      "step",
+                      "piecewise_linear"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "kind"
+                    ],
+                    "properties": {
+                      "kind": {
+                        "enum": [
+                          "continuous",
+                          "discrete",
+                          "step",
+                          "piecewise_linear"
+                        ]
+                      },
+                      "y_range": {
+                        "type": "array",
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "items": {
+                          "type": "number"
+                        }
+                      },
+                      "x_range": {
+                        "type": "array",
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "items": {
+                          "type": "number"
+                        }
+                      },
+                      "turning_points": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "sample_count": {
+                        "type": "integer",
+                        "minimum": 2
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "overrides": {
+              "type": "object"
+            }
+          },
+          "additionalProperties": true
         }
       },
       "additionalProperties": true,
