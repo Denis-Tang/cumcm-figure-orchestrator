@@ -64,6 +64,17 @@ python -B -m unittest discover -s tests -v
 
 基础依赖支持数据图和核心验证；D2、Graphviz、R、地理库及其他 Agent Skills 按任务另行安装，未随仓库附带。Windows 的 D2 安装/渲染脚本依赖 PowerShell 与 Edge；其他平台须使用适合本机的渲染链。中文图需要本机可用的中文字体。依赖不足时由路由报告或选择满足约束的备选。
 
+D2 源使用 palette token，渲染时必须显式传入活动 JSON；脚本会先物化颜色，再调用 D2 + ELK：
+
+```powershell
+$skill = '.\.agents\skills\cumcm-figure-orchestrator'
+& "$skill\scripts\render_d2.ps1" -Source examples\fig_01_solution_overview.d2 `
+  -SvgOut examples\fig_01_solution_overview.svg -PngOut examples\fig_01_solution_overview.png `
+  -PalettePath "$skill\assets\personal-color-baseline.json"
+```
+
+不要在 D2 模板中复制近似 hex。Matplotlib 图在所有第三方样式调用后重新执行 `apply_closed_cartesian_style()`，再运行 `inspect_figure_layout()` 并读取 `axes_frame_closed`。
+
 ## 示例与验证边界
 
 `examples/paper-plan.json` 是规划/回归夹具，引用的是占位路径，不是可直接验收的论文。`scripts/demo_batch.py --out outputs/demo`（完整脚本位于 Skill scripts 下）可生成合成验收批次，其中演示了封闭边框、4:3 面板与 `discrete` 线条声明；视觉检查仍需实际执行。不得将测试中的模拟审查证据复制到正式论文。
@@ -75,6 +86,7 @@ python -B -m unittest discover -s tests -v
 - 移除 V03 配色及其版本切换机制，V02 成为唯一基准。
 - 新增 `axes_frame_closed`、`panel_aspect_whitelist`、`curve_smoothing` 三项自动检查，样式类检查由 3 项增至 6 项。
 - 新增 `scripts/figure_style.py`（配色选择、连续性声明、封闭边框套用）与 `tests/test_figure_style.py`。
+- D2 模板通过 `materialize_d2.py` 直接读取活动 palette JSON；新增 76%/16% RGB 预混合及最终四边闭合回归测试。
 - 收紧门禁后，早于本次变更的批次需要按新规范重出才能通过严格校验。
 
 ## 发布范围与续接

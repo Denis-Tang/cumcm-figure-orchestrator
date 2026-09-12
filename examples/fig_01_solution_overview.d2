@@ -1,0 +1,28 @@
+direction: down
+
+input: "输入数据" {
+  style.fill: "{{soft_fills.blue}}"
+  style.stroke: "{{colors.blue}}"
+}
+
+clean: "清洗与校验" {
+  style.fill: "{{soft_fills.slate}}"
+  style.stroke: "{{colors.slate}}"
+}
+
+model: "建立优化模型" {
+  style.fill: "{{soft_fills.violet}}"
+  style.stroke: "{{colors.violet}}"
+}
+
+solve: "求解与敏感性分析" {
+  style.fill: "{{soft_fills.amber}}"
+  style.stroke: "{{colors.amber}}"
+}
+
+output: "结果与建议" {
+  style.fill: "{{soft_fills.teal}}"
+  style.stroke: "{{colors.teal}}"
+}
+
+input -> clean -> model -> solve -> output

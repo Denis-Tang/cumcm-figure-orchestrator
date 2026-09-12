@@ -3,6 +3,7 @@ param(
     [Parameter(Mandatory = $true)][string]$Source,
     [Parameter(Mandatory = $true)][string]$SvgOut,
     [Parameter(Mandatory = $true)][string]$PngOut,
+    [Parameter(Mandatory = $true)][string]$PalettePath,
     [ValidateRange(1, 4)][int]$Scale = 2
 )
 
@@ -24,6 +25,12 @@ $svgPath = [IO.Path]::GetFullPath($SvgOut)
 $pngPath = [IO.Path]::GetFullPath($PngOut)
 New-Item -ItemType Directory -Path ([IO.Path]::GetDirectoryName($svgPath)) -Force | Out-Null
 New-Item -ItemType Directory -Path ([IO.Path]::GetDirectoryName($pngPath)) -Force | Out-Null
+
+$materialized = Join-Path ([IO.Path]::GetDirectoryName($svgPath)) ([IO.Path]::GetFileNameWithoutExtension($svgPath) + '.materialized.d2')
+$adapter = Join-Path $PSScriptRoot 'materialize_d2.py'
+& py -3.11 $adapter --source $sourcePath --out $materialized --palette ([IO.Path]::GetFullPath($PalettePath))
+if ($LASTEXITCODE -ne 0) { throw "D2 palette materialization failed with exit code $LASTEXITCODE" }
+$sourcePath = $materialized
 
 & $d2 --layout elk $sourcePath $svgPath
 if ($LASTEXITCODE -ne 0) {
@@ -53,4 +60,3 @@ if ((Get-Item -LiteralPath $pngPath).Length -lt 1024) {
 Write-Output "Rendered SVG: $svgPath"
 Write-Output "Rendered PNG: $pngPath"
 Write-Output "Canvas: $width x $height; device scale: $Scale"
-

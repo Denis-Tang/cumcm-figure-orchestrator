@@ -29,6 +29,19 @@ class StyleTests(unittest.TestCase):
                     self.assertEqual(line.get_color(), mapping[key]['colors'])
         with self.assertRaises(ValueError): select_colors(list('ABCDEF'))
 
+    def test_v02_fill_variants_are_precomposited_exact_rgb(self):
+        _, palette = load_style()
+        def blend(hex_color, strength):
+            channels = [int(hex_color[i:i+2], 16) for i in (1, 3, 5)]
+            return '#' + ''.join(f'{round(value * strength + 255 * (1 - strength)):02x}' for value in channels)
+        for role, color in palette['colors'].items():
+            self.assertEqual(palette['large_area_fills'][role], blend(color, 0.76))
+            self.assertEqual(palette['soft_fills'][role], blend(color, 0.16))
+        mapping = select_colors(['primary', 'comparison', 'auxiliary'])
+        self.assertEqual([mapping[key]['colors'] for key in mapping], [palette['colors'][role] for role in ('blue', 'coral', 'amber')])
+        self.assertEqual([mapping[key]['large_area_fills'] for key in mapping], [palette['large_area_fills'][role] for role in ('blue', 'coral', 'amber')])
+        self.assertEqual([mapping[key]['soft_fills'] for key in mapping], [palette['soft_fills'][role] for role in ('blue', 'coral', 'amber')])
+
     def test_semantic_override_and_stable_mapping(self):
         mapping = select_colors(['vegetation','other'], overrides={'vegetation': {'role':'teal','reason':'vegetation convention'}})
         self.assertEqual(mapping['vegetation']['role'], 'teal')
@@ -85,6 +98,14 @@ class StyleTests(unittest.TestCase):
         self.assertEqual(result['panels'][0]['tick_sides'], ['bottom', 'left'])
         self.assertTrue(any(t.tick1line.get_visible() for t in ax.xaxis.get_major_ticks()))
         self.assertFalse(any(t.label1.get_visible() for t in ax.xaxis.get_major_ticks()))
+
+    def test_final_frame_reapplication_survives_a_style_reset(self):
+        fig, ax = plt.subplots()
+        ax.spines[['left', 'right', 'top', 'bottom']].set_visible(False)
+        apply_closed_cartesian_style(ax)
+        frame = inspect_figure_layout(fig)['axes_frame_closed']
+        self.assertEqual(frame['status'], 'pass')
+        self.assertEqual(frame['panels'][0]['spines'], {'left': True, 'right': True, 'top': True, 'bottom': True})
 
     def test_top_ticks_need_a_recorded_reason(self):
         with plt.rc_context(matplotlib_style()):
